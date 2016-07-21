@@ -81,14 +81,14 @@
             <br># cross-validation with testing and validation set:
             <br>
             <br># Data selection
-        <li>     testing<-(testing[,-weg])[,-cneu]</li> 
+        <li>     testing<-(testing[,-a])[,-b2]</li> 
             <br># PCA
         <li>     testPC<-predict(preproc,testing[,-57])</li> 
             <br># Checking accuracy
         <li>     confusionMatrix(testing$classe, predict(modFit,testPC))</li> 
             <br>
             <br># Data selection
-        <li>     validation2<-(validation[,-weg])[,-cneu]</li> 
+        <li>     validation2<-(validation[,-a])[,-b2]</li> 
             <br># PCA
         <li>     valPC<-predict(preproc,validation2[,-57])</li> 
             <br># Out of sample accuray:
@@ -99,7 +99,7 @@
         <li>     testing = read.csv("~/Desktop/pml-testing.csv")</li> 
             <br>
             <br># Data selection
-        <li>     testing<-(testing[,-weg])[,-cneu]</li> 
+        <li>     testing<-(testing[,-a])[,-b2]</li> 
             <br># PCA
         <li>     testPC<-predict(preproc,testing[,-57])</li> 
             <br># Prediction
