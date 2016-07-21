@@ -59,7 +59,7 @@
         <li>     b<-numeric()</li> 
         <li>     for (i in 1:(dim(newtrain)[2]-1)){</li> 
         <li>     if (is.numeric(newtrain[,i])==FALSE) b[i]<-i}</li> 
-        <li>     b2<-c[-which(is.na(b))]</li> 
+        <li>     b2<-b[-which(is.na(b))]</li> 
         <li>     newtrain<-newtrain[,-b2]</li> 
             <br>
             <br>
