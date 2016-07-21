@@ -14,7 +14,7 @@
             Model explanation
         </h1>
 
-        Looking at the data, i saw, that there was a lot of missing data. After splitting the data into a training, a testing and a validation set, I excluded all predictors which have NA in them. Further for the prediction, it is not important, how the person is called, or at what time he did the exercise. Also the infinite values in some predictors are not advantageous. I ruled these out using the is.numeric() function of R.
+        Looking at the data I saw that there was a lot of missing data. After splitting the data into a training, a testing and a validation set, I excluded all predictors which have NA in them. Further for the prediction, it is not important, how the person is called, or at what time he did the exercise. Also the infinite values in some predictors are not advantageous. I ruled these out using the is.numeric() function of R.
         <br>
         Afterwards I computed the correlation and found out, that a lot of the predictors are correlating:
         <ul> Correlating predictors:
@@ -34,11 +34,11 @@
         <code><ol>
         <li>    library(caret) <br></li> 
             <br>
-            # read Data:
+            # read data:
         <li>     dat = read.csv("~/Desktop/pml-training.csv")</li> 
             <br>
             <br>
-            <br># Split Data:
+            <br># Split data:
         <li>     inTrain<-createDataPartition(dat$classe, p=0.7,list=FALSE)</li> 
             <br>
         <li>     training <- dat[ inTrain,]</li> 
