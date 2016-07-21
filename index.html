@@ -3,6 +3,11 @@
     <head>
         <meta charset="utf-8" />
         <title>Assignment</title>
+        <style media="screen">
+          code{
+            background-color: lightyellow
+          }
+        </style>
     </head>
     <body>
         <h1>
@@ -24,5 +29,82 @@
         So I did a principal component analysis to get finally 46 predictors out of 56 before principal component analysis.
         <br>
         With these 46 predictors I fitted a random forest model, which reached an in-sample-accuracy of 1 and an out-of-sample-accuracy of 0.98
+        
+        <h1>R markdown</h1>
+        <code><ol>
+        <li>    library(caret) <br></li> 
+            <br>
+            # read Data:
+        <li>     dat = read.csv("~/Desktop/pml-training.csv")</li> 
+            <br>
+            <br>
+            <br># Split Data:
+        <li>     inTrain<-createDataPartition(dat$classe, p=0.7,list=FALSE)</li> 
+            <br>
+        <li>     training <- dat[ inTrain,]</li> 
+        <li>     newdat<-dat[-inTrain,]</li> 
+            <br>
+        <li>     inTrain<-createDataPartition(newdat$classe, p=0.5,list=FALSE)</li> 
+        <li>     testing<- newdat[ inTrain,]</li> 
+        <li>     validation<-newdat[ -inTrain,]</li> 
+            <br>
+            <br>
+            <br>
+            <br># Remove NA-predictors
+        <li>     a<-which(is.na(training[1,])==TRUE)</li> 
+        <li>     newtrain<-training[,-a]</li> 
+            <br>
+            <br>
+            <br># Remove inf-predictors, name and Date
+        <li>     b<-numeric()</li> 
+        <li>     for (i in 1:(dim(newtrain)[2]-1)){</li> 
+        <li>     if (is.numeric(newtrain[,i])==FALSE) b[i]<-i}</li> 
+        <li>     b2<-c[-which(is.na(b))]</li> 
+        <li>     newtrain<-newtrain[,-b2]</li> 
+            <br>
+            <br>
+            <br># Correlation Matrix
+        <li>     M<-abs(cor(newtrain[,-(dim(newtrain)[2])]))</li> 
+        <li>     diag(M)<-0</li> 
+        <li>     which(M>0.8,arr.ind=T)</li> 
+            <br>
+            <br># PCA preprocessing
+        <li>     preproc<-preProcess(newtrain[,-57],method="pca", pcaComp=46)</li> 
+        <li>     trainPC=predict(preproc, newtrain[,-57])</li> 
+            <br>
+            <br># train RF-model
+        <li>     modFit<-train(newtrain$classe ~., method="rf", data=trainPC)</li> 
+            <br>
+            <br># Checking Accuracy
+        <li>     confusionMatrix(training$classe, predict(modFit,trainPC))</li> 
+            <br>
+            <br># cross-validation with testing and validation set:
+            <br>
+            <br># Data selection
+        <li>     testing<-(testing[,-weg])[,-cneu]</li> 
+            <br># PCA
+        <li>     testPC<-predict(preproc,testing[,-57])</li> 
+            <br># Checking accuracy
+        <li>     confusionMatrix(testing$classe, predict(modFit,testPC))</li> 
+            <br>
+            <br># Data selection
+        <li>     validation2<-(validation[,-weg])[,-cneu]</li> 
+            <br># PCA
+        <li>     valPC<-predict(preproc,validation2[,-57])</li> 
+            <br># Out of sample accuray:
+        <li>     confusionMatrix(validation$classe, predict(modFit,valPC))</li> 
+            <br>
+            <br>
+            <br># predicting the pml-testing.csv-data
+        <li>     testing = read.csv("~/Desktop/pml-testing.csv")</li> 
+            <br>
+            <br># Data selection
+        <li>     testing<-(testing[,-weg])[,-cneu]</li> 
+            <br># PCA
+        <li>     testPC<-predict(preproc,testing[,-57])</li> 
+            <br># Prediction
+        <li>     pred<-predict(modFit,testPC)</li> 
+            </ol></code>
     </body>
+    
 </html>
