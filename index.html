@@ -35,39 +35,7 @@
         <br>
         With these 46 predictors I fitted a random forest model, which reached an in-sample accuracy of 1 and an out-of-sample accuracy of 0.9912.
         The testing subset was used to choose the best model for the data, which was random forest. I also tried several other methods like decision tree or several boosting algorithms. The validation subset was used to estimate the out-of-sample accuracy.
-        <br>
-        Confusion Matrix and Statistics<br>
-<br>
-          Reference<br>
-Prediction   A   B   C   D   E<br>
-         A 836   1   0   0   0<br>
-         B   4 564   1   0   0<br>
-         C   0   3 509   1   0<br>
-         D   0   0   4 477   1<br>
-         E   0   0   0   2 539<br>
-<br>
-Overall Statistics<br>
-                                          <br>
-               Accuracy : 0.9942          <br>
-                 95% CI : (0.9908, 0.9966)<br>
-    No Information Rate : 0.2855          <br>
-    P-Value [Acc > NIR] : < 2.2e-16       <br>
-                                          <br>
-                  Kappa : 0.9927          <br>
- Mcnemar's Test P-Value : NA              <br>
-<br>
-Statistics by Class:<br>
-<br>
-                     Class: A Class: B Class: C Class: D Class: E<br>
-Sensitivity            0.9952   0.9930   0.9903   0.9938   0.9981<br>
-Specificity            0.9995   0.9979   0.9984   0.9980   0.9992<br>
-Pos Pred Value         0.9988   0.9912   0.9922   0.9896   0.9963<br>
-Neg Pred Value         0.9981   0.9983   0.9979   0.9988   0.9996<br>
-Prevalence             0.2855   0.1931   0.1747   0.1632   0.1835<br>
-Detection Rate         0.2842   0.1917   0.1730   0.1621   0.1832<br>
-Detection Prevalence   0.2845   0.1934   0.1744   0.1638   0.1839<br>
-Balanced Accuracy      0.9974   0.9954   0.9943   0.9959   0.9987<br>
-        <br>
+        <br><br>
         <h1>R markdown</h1>
         <code><ol>
         <li>    library(caret) <br></li> 
