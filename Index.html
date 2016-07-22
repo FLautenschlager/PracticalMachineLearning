@@ -28,6 +28,11 @@
         </ul>
         So I did a principal component analysis to get finally 46 predictors out of 56 before principal component analysis.
         <br>
+        The histographs of most of the predictors seems to be quite equally distributed, like
+        <img src="Rplot.jpg"/>
+        <br>
+        Also there seem to be no big dependencies between the predictors.
+        <br>
         With these 46 predictors I fitted a random forest model, which reached an in-sample accuracy of 1 and an out-of-sample accuracy of 0.9912.
         The testing subset was used to choose the best model for the data, which was random forest. I also tried several other methods like decision tree or several boosting algorithms. The validation subset was used to estimate the out-of-sample accuracy.
         
